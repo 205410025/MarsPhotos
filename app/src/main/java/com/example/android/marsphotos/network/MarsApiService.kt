@@ -25,16 +25,15 @@ import retrofit2.http.GET
 private const val BASE_URL = "https://android-kotlin-fun-mars-server.appspot.com/"
 
 /**
- * Build the Moshi object that Retrofit will be using, making sure to add the Kotlin adapter for
- * full Kotlin compatibility.
+ * Bangun objek Moshi yang akan digunakan Retrofit
  */
 private val moshi = Moshi.Builder()
     .add(KotlinJsonAdapterFactory())
     .build()
 
 /**
- * Use the Retrofit builder to build a retrofit object using a Moshi converter with our Moshi
- * object.
+ * Gunakan pembuat Retrofit untuk membuat objek retrofit menggunakan konverter Moshi dengan Moshi
+ * objek.
  */
 private val retrofit = Retrofit.Builder()
     .addConverterFactory(MoshiConverterFactory.create(moshi))
@@ -42,20 +41,20 @@ private val retrofit = Retrofit.Builder()
     .build()
 
 /**
- * A public interface that exposes the [getPhotos] method
+ * Interface publik yang menampilkan metode [getPhotos].
  */
 interface MarsApiService {
     /**
-     * Returns a [List] of [MarsPhoto] and this method can be called from a Coroutine.
-     * The @GET annotation indicates that the "photos" endpoint will be requested with the GET
-     * HTTP method
+     * Mengembalikan [Daftar] dari [MarsPhoto] dan metode ini dapat dipanggil dari Coroutine.
+     * Anotasi @GET menunjukkan bahwa titik akhir "foto" akan diminta dengan GET
+     * Metode HTTP
      */
     @GET("photos")
     suspend fun getPhotos(): List<MarsPhoto>
 }
 
 /**
- * A public Api object that exposes the lazy-initialized Retrofit service
+ * Objek Api publik yang menampilkan layanan Retrofit
  */
 object MarsApi {
     val retrofitService: MarsApiService by lazy { retrofit.create(MarsApiService::class.java) }

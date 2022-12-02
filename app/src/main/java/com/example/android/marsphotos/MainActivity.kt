@@ -20,8 +20,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 
 /**
- * MainActivity sets the content view activity_main, a fragment container that contains
- * overviewFragment.
+ * MainActivity mengatur tampilan konten activity_main, wadah fragmen yang berisi overviewFragment.
  */
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

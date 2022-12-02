@@ -27,25 +27,25 @@ import kotlinx.coroutines.launch
 enum class MarsApiStatus { LOADING, ERROR, DONE }
 
 /**
- * The [ViewModel] that is attached to the [OverviewFragment].
+ * [ViewModel] yang dilampirkan ke [OverviewFragment].
  */
 class OverviewViewModel : ViewModel() {
 
-    // The internal MutableLiveData that stores the status of the most recent request
+    // MutableLiveData internal yang menyimpan status permintaan terbaru
     private val _status = MutableLiveData<MarsApiStatus>()
 
-    // The external immutable LiveData for the request status
+    // LiveData eksternal yang tidak dapat diubah untuk status permintaan
     val status: LiveData<MarsApiStatus> = _status
 
-    // Internally, we use a MutableLiveData, because we will be updating the List of MarsPhoto
-    // with new values
+    // Secara internal, menggunakan MutableLiveData, karena akan memperbarui Daftar MarsPhoto
+    // dengan nilai baru
     private val _photos = MutableLiveData<List<MarsPhoto>>()
 
-    // The external LiveData interface to the property is immutable, so only this class can modify
+    // Interface LiveData eksternal ke properti tidak dapat diubah
     val photos: LiveData<List<MarsPhoto>> = _photos
 
     /**
-     * Call getMarsPhotos() on init so we can display status immediately.
+     * Panggil getMarsPhotos() di init agar dapat segera menampilkan status.
      */
     init {
         getMarsPhotos()
